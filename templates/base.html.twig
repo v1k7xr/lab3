@@ -8,6 +8,12 @@
     <body>
         {% if app.user %}
             <p> <a href="{{ path('app_logout') }}"> Выход </a></p>
+
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <p> <a href="{{ path('addPost') }}"> Добавить пост </a></p>
+        {% endif %}
+
         {% endif %}
         {% if app.user is same as(null) %}
             <p> <a href="{{ path('app_register') }}"> Регистрация </a></p>

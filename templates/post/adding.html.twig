@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Создание поста</h1>
+
+    {{ form_start(post) }}
+        <br>
+        {{ form_row(post.name) }}
+        {{ form_row(post.description) }}
+        {{ form_row(post.fullText) }}
+        <br>
+        <button type="submit" class="btn">Создать пост</button>
+    {{ form_end(post) }}
+</div>
+{% endblock %}

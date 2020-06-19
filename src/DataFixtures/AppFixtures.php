@@ -3,6 +3,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\Entity\Post;
+use App\Entity\Comment;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -32,10 +34,27 @@ class AppFixtures extends Fixture
         $admin->setPassword($this->passwordEncoder->encodePassword($user, '4dmin123!'));
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setNickname('Admin01');
+        
+        $post = new Post();
+        $post->setName('test post');
+        $date = \DateTime::createFromFormat('Y-m-d', "2020-06-19");
+        $post->setAddingDate($date);
+        $post->setDescription('description for test post');
+        $post->setFullText('text of test post');
+        $post->setViewsCount(0);
+
+        $comment = new Comment();
+        $comment->setCommentaryText('test comment');
+        $comment->setPost($post);
+        $comment->setCreationDate($date);
+        $comment->setUsername($user);
+
 
         $manager->persist($user);
         $manager->persist($admin);
-        
+        $manager->persist($post);
+        $manager->persist($comment);
+
         $manager->flush();
     }
 }

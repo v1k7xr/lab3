@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Изменение поста {% endblock %}
+
+{% block body %}
+    <h1>Изменить информацию о посте</h1>
+
+    {{ form_start(changePost) }}
+        <br>
+        <br>
+        <br>
+        {{ form_row(changePost.name) }}
+        <br>
+        {{ form_row(changePost.description) }}
+        <br>
+        {{ form_row(changePost.fullText) }}
+        <br>
+        <button type="submit" class="btn">Изменить</button>
+    {{ form_end(changePost) }}
+{% endblock %}

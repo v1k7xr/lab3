@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <p> {{ user.nickname }} </p>
+    <p> {{ post.description }} </p>
+    <p> Секция комментов </p>
+
+    {{ form_start(comment) }}
+    {{ form_row(comment.commenttext) }}
+        <button type="submit" class="btn">Оставить комментарий</button>
+    {{ form_end(comment) }}
+
+    {% for comment in comments %}
+        <div class="cont">
+            <p> {{ comment.commentaryText }} </p>
+            <p> Дата написания: {{ comment.creationDate|date('Y-m-d')  }} </p>
+        </div>
+        {% endfor %}
+</div>
+{% endblock %}

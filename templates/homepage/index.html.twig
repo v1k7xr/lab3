@@ -9,7 +9,23 @@
 </style>
 
 <div class="example-wrapper">
-    <h1> Главная страница с постами </h1>
-    <p> Сайт в разработке </p>
+    {% for post in posts %}
+        <div class="cont">
+            <p> Пост с номером {{ post.id }} </p>
+            <li> Название: {{ post.name }}</li>
+            <li> Дата создания: {{ post.addingDate|date('Y-m-d')  }}</li>
+            <li> Описание: {{ post.description }}</li>
+            <li> Текст: {{ post.fullText }}</li>
+            <li> Количество просмотров: {{ post.viewsCount }}</li>
+            {% if is_granted('ROLE_ADMIN') %} 
+                <a class="link" href="{{ path('changePost', {id : post.id}) }}">Изменить пост</a>
+                <br>
+                <a class="link" href="{{ path('deletePost', {id : post.id}) }}">Удалить пост</a>
+                <br>
+            {% endif %}
+            <a class="link" href="{{ path('post', {id : post.id}) }}">Посмотреть полностью</a>
+            </ul>
+        </div>
+        {% endfor %}
 </div>
 {% endblock %}

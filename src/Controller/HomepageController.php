@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Post;
 
 class HomepageController extends AbstractController
 {
@@ -12,8 +13,15 @@ class HomepageController extends AbstractController
      */
     public function index()
     {
+        $posts = $this->getDoctrine()
+            ->getRepository(Post::class)
+            ->findBy([],
+            ['addingDate' => 'ASC']
+        );
+
         return $this->render('homepage/index.html.twig', [
             'controller_name' => 'HomepageController',
+            'posts' => $posts,
         ]);
     }
 }
