@@ -101,6 +101,12 @@ class PostController extends AbstractController
             throw $this->createNotFoundException('Данного поста нет');
         }
 
+        $comments = $post->getComments();
+
+        foreach ($comments as $comment) {
+            $entityManager->remove($comment);
+        }
+
         $entityManager->remove($post);
         $entityManager->flush();
 
