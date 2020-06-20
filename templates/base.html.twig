@@ -3,21 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel="stylesheet" href="/assets/css/main.css">
+        {% endblock %}
     </head>
     <body>
         {% if app.user %}
-            <p> <a href="{{ path('app_logout') }}"> Выход </a></p>
-
-
+             <a class="btn btn-primary active" href="{{ path('app_logout') }}"> Выход </a>
         {% if is_granted('ROLE_ADMIN') %}
-            <p> <a href="{{ path('addPost') }}"> Добавить пост </a></p>
+             <a class="btn btn-primary active" href="{{ path('addPost') }}"> Добавить пост </a>
         {% endif %}
-
         {% endif %}
         {% if app.user is same as(null) %}
-            <p> <a href="{{ path('app_register') }}"> Регистрация </a></p>
-            <p> <a href="{{ path('app_login') }}"> Вход </a></p>
+             <a class="btn btn-primary active" href="{{ path('app_register') }}"> Регистрация </a>
+             <a class="btn btn-primary active" href="{{ path('app_login') }}"> Вход </a>
         {% endif %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}

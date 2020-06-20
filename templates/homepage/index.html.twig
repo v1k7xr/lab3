@@ -10,21 +10,40 @@
 
 <div class="example-wrapper">
     {% for post in posts %}
-        <div class="cont">
-            <p> Пост с номером {{ post.id }} </p>
-            <li> Название: {{ post.name }}</li>
-            <li> Дата создания: {{ post.addingDate|date('Y-m-d')  }}</li>
-            <li> Описание: {{ post.description }}</li>
-            <li> Текст: {{ post.fullText }}</li>
-            <li> Количество просмотров: {{ post.viewsCount }}</li>
-            {% if is_granted('ROLE_ADMIN') %} 
-                <a class="link" href="{{ path('changePost', {id : post.id}) }}">Изменить пост</a>
-                <br>
-                <a class="link" href="{{ path('deletePost', {id : post.id}) }}">Удалить пост</a>
-                <br>
-            {% endif %}
-            <a class="link" href="{{ path('post', {id : post.id}) }}">Посмотреть полностью</a>
-            </ul>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6">
+                    <div class="cont">
+                        <a class="link" href="{{ path('post', {id : post.id}) }}"> <h3> {{ post.name }} </h3> </a>
+                        <span class="badge badge-primary"> {{ post.addingDate|date('Y-m-d')  }} </span> <br>
+                        <span class="badge badge-primary"> Описание: </span>
+                            <p> {{ post.description }} </p>
+                            <div class="notification-icon">
+                                <svg class="bi bi-chat-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                </svg>
+                                <span class="badge">{{ post.comments|length }}</span>
+                                <svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"/>
+                                <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                </svg>
+                                <span class="badge">{{ post.viewsCount }}</span>
+                            </div>
+                        {% if is_granted('ROLE_ADMIN') %} 
+                            <a class="link" href="{{ path('changePost', {id : post.id}) }}">Изменить пост</a>
+                            <br>
+                            <a class="link" href="{{ path('deletePost', {id : post.id}) }}">Удалить пост</a>
+                            <br>
+                        {% endif %}
+                        </ul>
+                    </div>
+                    <br><br><br>
+                </div>
+                <div class="col-md-3">
+                </div>
+            </div>
         </div>
         {% endfor %}
 </div>

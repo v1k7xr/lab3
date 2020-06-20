@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PostController!{% endblock %}
+{% block title %}Добавить пост{% endblock %}
 
 {% block body %}
 <style>
@@ -9,15 +9,36 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Создание поста</h1>
+    <h3>Создание поста</h3>
 
     {{ form_start(post) }}
         <br>
-        {{ form_row(post.name) }}
-        {{ form_row(post.description) }}
-        {{ form_row(post.fullText) }}
-        <br>
-        <button type="submit" class="btn">Создать пост</button>
+        {{ form_row(post.name, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(post.description, { 'attr' : { 'class' : 'form-control' } }) }}
+        <div class="form-group">
+        {{ form_row(post.fullText, { 'attr' : { 'class' : 'form-control rounded-0' } })}}
+        <div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Создать пост</button>
     {{ form_end(post) }}
 </div>
+    <script language = "javascript" 
+        src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+            jQuery.fn.extend({
+            autoHeight: function () {
+                function autoHeight_(element) {
+                return jQuery(element).css({
+                    'height': 'auto',
+                    'overflow-y': 'hidden'
+                }).height(element.scrollHeight);
+                }
+                return this.each(function () {
+                autoHeight_(this).on('input', function () {
+                    autoHeight_(this);
+                });
+                });
+            }
+            });
+            $('#adding_form_fullText').autoHeight();
+    </script>
 {% endblock %}

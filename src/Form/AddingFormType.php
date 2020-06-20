@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -23,7 +24,7 @@ class AddingFormType extends AbstractType
         $builder
             ->add('name', TextType::class, ['label' => 'Название поста'])
             ->add('description', TextType::class, ['label' => 'Описание'])
-            ->add('fullText', TextType::class, ['label' => 'Текст'])
+            ->add('fullText', TextareaType::class, ['label' => 'Текст'])
         ;
     }
 

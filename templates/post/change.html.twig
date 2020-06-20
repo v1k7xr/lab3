@@ -6,15 +6,36 @@
     <h1>Изменить информацию о посте</h1>
 
     {{ form_start(changePost) }}
+        {{ form_row(changePost.name, { 'attr' : { 'class' : 'form-control' } }) }}
         <br>
+        {{ form_row(changePost.description, { 'attr' : { 'class' : 'form-control' } }) }}
         <br>
+        <div class="form-group">
+        {{ form_row(changePost.fullText, { 'attr' : { 'class' : 'form-control rounded-0' } })}}
+        <div>
         <br>
-        {{ form_row(changePost.name) }}
-        <br>
-        {{ form_row(changePost.description) }}
-        <br>
-        {{ form_row(changePost.fullText) }}
-        <br>
-        <button type="submit" class="btn">Изменить</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Изменить</button>
     {{ form_end(changePost) }}
+
+
+        <script language = "javascript" 
+        src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script>
+                jQuery.fn.extend({
+                autoHeight: function () {
+                    function autoHeight_(element) {
+                    return jQuery(element).css({
+                        'height': 'auto',
+                        'overflow-y': 'hidden'
+                    }).height(element.scrollHeight);
+                    }
+                    return this.each(function () {
+                    autoHeight_(this).on('input', function () {
+                        autoHeight_(this);
+                    });
+                    });
+                }
+                });
+                $('#adding_form_fullText').autoHeight();
+        </script>
 {% endblock %}

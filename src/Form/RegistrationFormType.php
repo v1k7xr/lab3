@@ -42,6 +42,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
+                'label' => 'Согласен(а) с терминами',
                 'attr' => [
                     'class' => 'filled-in'
                 ]
@@ -50,6 +51,7 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
+                'label' => 'Пароль',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -62,7 +64,9 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('nickname')
+            ->add('nickname', null, [
+                'label' => 'Никнейм'
+            ])
         ;
     }
 

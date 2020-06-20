@@ -19,6 +19,10 @@ class HomepageController extends AbstractController
             ['addingDate' => 'ASC']
         );
 
+        foreach ($posts as $post) {
+            $post->getComments();
+        }
+
         return $this->render('homepage/index.html.twig', [
             'controller_name' => 'HomepageController',
             'posts' => $posts,
