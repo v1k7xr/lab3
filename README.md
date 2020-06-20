@@ -14,5 +14,5 @@ symfony project
     – 4dmin123! (password)
 
  
-1)backup бд в  lab3/backups/backup.sql, можно восстановить базу, можно запустить 
-2)изменить строку подключения в  lab3/.env 
+1)backup бд в  lab3/backups/backup.sql, можно восстановить базу, можно запустить  
+2)изменить строку подключения в  lab3/.env   
